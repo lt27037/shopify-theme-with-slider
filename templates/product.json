@@ -75,6 +75,7 @@
     },
     "related-products": {
       "type": "related-products",
+      "disabled": true,
       "settings": {
         "heading": "You may also like",
         "heading_size": "h2",
@@ -96,7 +97,7 @@
       "settings": {
         "heading": "Polecane dla Ciebie",
         "button": "Zobacz wszystkie",
-        "products_to_show": 4,
+        "products_to_show": 6,
         "show_rating": true
       }
     }
