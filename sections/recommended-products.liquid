@@ -1,0 +1,94 @@
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer="defer"></script>
+<script type="module" src="{{ 'swiper.js' | asset_url }}" defer="defer"></script>
+
+<link rel="stylesheet" href="{{ 'swiper-styles.css' | asset_url }}" media="print" onload="this.media='all'" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'" />
+
+<product-recommendations
+		class="related-products page-width section-{{ section.id }}-padding"
+		data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}"
+>
+
+	{% if recommendations.performed and recommendations.products_count > 0 %}
+
+		<section id="section-{{ section.id }}" class="RecommendedProducts">
+			<header class="Slider__header">
+				<h2 class="Slider__title">{{ section.settings.heading }}</h2>
+				<button type="button" class="Slider__button button button-label">{{ section.settings.button }}</button>
+			</header>
+
+			<div class="Slider">
+				<div class="swiper-wrapper Slider__wrapper">
+
+					{% for recommendation in recommendations.products limit: section.settings.products_to_show %}
+						{% render 'card-product-custom',
+								card_product: recommendation,
+								media_aspect_ratio: section.settings.image_ratio,
+								show_rating: section.settings.show_rating
+						%}
+					{% endfor %}
+
+				</div>
+				<div class="Slider__buttonPrev">
+					<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M16.25 20.5833L8.66667 13L16.25 5.41665" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</div>
+				<div class="Slider__buttonNext">
+					<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M9.75 5.41666L17.3333 13L9.75 20.5833" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</div>
+			</div>
+
+			<div class="Slider__footer">
+				<button type="button" class="Slider__button Slider__button--mobile button button-label">{{ section.settings.button }}</button>
+			</div>
+
+		</section>
+	{% endif %}
+
+</product-recommendations>
+
+
+{% schema %}
+{
+  "name": "Recommended products",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Ustawienia"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Polecane dla Ciebie",
+      "label": "Tytuł"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "button",
+      "default": "Zobacz wszystkie",
+      "label": "Treść przycisku"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 3,
+      "label": "Ilość produktów w sekcji"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": true,
+      "label": "Pokaż oceny produktów",
+      "info": "Aby wyświetlić ocenę, dodaj aplikację do oceny produktów. [Dowiedz się więcej](https:\/\/help.shopify.com\/manual\/online-store\/themes\/theme-structure\/theme-features#featured-collection-show-product-rating)"
+    }
+  ]
+}
+{% endschema %}
