@@ -67,10 +67,15 @@
   text-transform: uppercase;
   letter-spacing: 0.15rem;
   height: 5rem;
+  text-decoration: none;
 }
 
 .Slider__footer{
   display: none;
+}
+
+.Slider__footer a{
+  text-decoration: none;
 }
 
 @media screen and (max-width: 1200px) {
