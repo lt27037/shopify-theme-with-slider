@@ -21,7 +21,6 @@
 						{% for recommendation in recommendations.products limit: section.settings.products_to_show %}
 							{% render 'card-product-custom',
 									card_product: recommendation,
-									media_aspect_ratio: section.settings.image_ratio,
 									show_rating: section.settings.show_rating
 							%}
 						{% endfor %}
@@ -62,7 +61,6 @@
 						{% if product.id != card_product.id %}
 							{% render 'card-product-custom',
 									card_product: card_product,
-									media_aspect_ratio: section.settings.image_ratio,
 									show_rating: section.settings.show_rating
 							%}
 						{% endif %}
