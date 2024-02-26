@@ -36,6 +36,7 @@ article.SliderProduct{
   margin-bottom: 1.2rem;
   aspect-ratio: 3 / 4;
   height: var(--imageHeight);
+  object-fit: cover;
 }
 
 .SliderProduct__details{
