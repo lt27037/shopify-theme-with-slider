@@ -14,7 +14,9 @@
 			<section id="section-{{ section.id }}" class="RecommendedProducts">
 				<header class="Slider__header">
 					<h2 class="Slider__title">{{ section.settings.heading }}</h2>
-					<button type="button" class="Slider__button button button-label">{{ section.settings.button }}</button>
+					<a href="/collections/{{ collection.handle }}">
+						<button type="button" class="Slider__button button button-label">{{ section.settings.button }}</button>
+					</a>
 				</header>
 				<div class="Slider">
 					<div class="swiper-wrapper Slider__wrapper">
@@ -53,7 +55,9 @@
 		<section id="section-{{ section.id }}" class="RecommendedProducts related-products">
 			<header class="Slider__header">
 				<h2 class="Slider__title">{{ section.settings.heading }}</h2>
-				<button type="button" class="Slider__button button button-label">{{ section.settings.button }}</button>
+				<a href="/collections/{{ collection.handle }}">
+					<button type="button" class="Slider__button button button-label">{{ section.settings.button }}</button>
+				</a>
 			</header>
 			<div class="Slider">
 				<div class="swiper-wrapper Slider__wrapper">

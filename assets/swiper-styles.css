@@ -15,7 +15,7 @@
   position: relative;
   overflow-x: hidden;
   box-sizing: border-box;
-  padding: 0 var(--sidePaddingSize);
+  padding: 0 var(--sidePaddingSize) 5rem;
 }
 
 .Slider__wrapper{
@@ -57,6 +57,10 @@
 @media screen and (max-width: 750px) {
   .related-products{
     --sidePaddingSize: 1.5rem;
+  }
+
+  .Slider{
+    padding: 0 var(--sidePaddingSize);
   }
 }
 
