@@ -1,0 +1,95 @@
+.SliderProduct{
+  --red: #E35249;
+  --gold: #EAAB6D;
+  --fontLight: #5B5B5B;
+  --imageHeight: 33.6rem;
+}
+
+a.SliderProduct__link{
+  max-width: 25.7rem;
+}
+
+article.SliderProduct{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  max-width: 25.7rem;
+  min-height: 50rem;
+}
+
+.SliderProduct__discount{
+  position: absolute;
+  top: 1.2rem;
+  left: 1.2rem;
+  background: var(--red);
+  color: #ffffff;
+  font-size: 1.4rem;
+  letter-spacing: -0.028rem;
+  line-height: 1.6rem;
+  font-family: Arial, sans-serif;
+  padding: .4rem .8rem;
+  border-radius: .4rem;
+}
+
+.SliderProduct__image{
+  margin-bottom: 1.2rem;
+  aspect-ratio: 3 / 4;
+  height: var(--imageHeight);
+}
+
+.SliderProduct__details{
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+}
+
+.SliderProduct__rating{
+  display: flex;
+  gap: .1rem;
+}
+
+.SliderProduct__star{
+  width: 1.6rem;
+}
+
+.SliderProduct__star.SliderProduct__star--active path{
+  fill: var(--gold);
+}
+
+.SliderProduct__details__title{
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: -0.04rem;
+  margin: 0 0 .4rem;
+  line-height: 114%;
+}
+
+p.SliderProduct__details__description{
+  color: var(--fontLight);
+  font-size: 1.3rem;
+  line-height: 120%;
+  letter-spacing: -0.026rem;
+  margin: 0 0 0.8rem;
+}
+
+.SliderProduct__priceWrapper{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+p.SliderProduct__price{
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin: 0;
+  color: #121212;
+}
+
+.SliderProduct__price--discounted{
+  color: var(--fontLight);
+  text-decoration: line-through;
+  font-size: 1.5rem;
+  line-height: 120%;
+  margin: 0;
+}

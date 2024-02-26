@@ -1,0 +1,81 @@
+{% comment %}
+  Renders a product card
+
+  Accepts:
+  - card_product: {Object} Product Liquid object (optional)
+  - show_rating: {Boolean} Show the product rating. Default: false
+  - section_id: {String} The ID of the section that contains this card.
+  - placeholder_image: {String} The placeholder image to use when no product exists. Default: 'product-apparel-2' (optional)
+
+  Usage:
+  {% render 'card-product', show_vendor: section.settings.show_vendor %}
+{% endcomment %}
+
+{{ 'card-product-custom.css' | asset_url | stylesheet_tag }}
+
+{% assign discount_value = "" %}
+{% assign startsWith = 'discount' %}
+{% assign checkArray = stringToCheck | split:startsWith %}
+
+{% assign rating = 0 %}
+{% for tag in card_product.tags %}
+	{% if tag contains 'rating/' %}
+		{% liquid
+			assign parts = tag | split: '/'
+			if parts[0] == 'rating'
+				assign rating = parts[1] | plus: 0
+			endif
+		%}
+	{% endif %}
+{% endfor %}
+
+
+{%- if card_product and card_product != empty -%}
+
+	<a
+			class="full-unstyled-link swiper-slide SliderProduct__link"
+			href="{{ card_product.url }}"
+			id="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }}"
+			aria-labelledby="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }} NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
+	>
+			<article class="swiper-slide SliderProduct">
+
+				{% for tag in card_product.tags %}
+					{% if tag contains 'discount/' %}
+						{% assign parts = tag | split: '/' %}
+						{% if parts[0] == 'discount' %}
+							<div class="SliderProduct__discount">-{{ parts[1] }}% zniżki</div>
+						{% endif %}
+					{% endif %}
+				{% endfor %}
+
+				<div class="SliderProduct__details">
+					<img
+						src="{{ card_product.featured_media | image_url: width: 533 }}"
+						alt="{{ card_product.featured_media.alt | escape }}"
+						class="SliderProduct__image"
+						loading="lazy"
+					>
+
+					{%- if show_rating -%}
+						<div class="SliderProduct__rating">
+							{% for i in (1..5) %}
+									{% render 'rating-start', active: i <= rating %}
+							{% endfor %}
+						</div>
+					{% endif %}
+
+					<h3 class="SliderProduct__details__title" id="title-{{ section_id }}-{{ card_product.id }}">
+							{{ card_product.title | escape }}
+					</h3>
+
+					<p class="SliderProduct__details__description">{{ card_product.description }}</p>
+				</div>
+				<div class="SliderProduct__priceWrapper">
+					<p class="SliderProduct__price">{{ card_product.price | money }}</p>
+					<p class="SliderProduct__price--discounted">{{ card_product.compare_at_price | money }}</p>
+				</div>
+			</article>
+	</a>
+
+{%- endif -%}
